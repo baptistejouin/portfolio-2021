@@ -1,0 +1,43 @@
+@use '../01-helpers/variables' as v;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/functions' as f;
+@use '../02-basic/basic';
+@use 'btn';
+
+.footer {
+    margin-top: #{f.rem(100)};
+    
+    .footerBackground {
+        background-color: v.$first-color;
+		padding: #{f.em(32)} 0;
+    }
+    footer {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1366px;
+        padding: 0 v.$page-gutter;    
+        @include m.screen-max(v.$screen-md) {flex-direction: column-reverse; gap: #{f.em(24)};}
+        color: v.$white;
+    }
+    .legal, .contact {
+        grid-column: span 5;
+    }
+    .legal {
+        font-size: #{f.rem(13)};;
+        @include m.screen-max(v.$screen-md) {display: flex; gap: 3px}
+    }
+    .contact {
+        @include m.screen-max(v.$screen-md) {justify-content: space-between; width: 100%;}
+        grid-column: 8 / span 5;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: #{f.em(24)};
+    }
+    .social {
+        display: flex;
+        gap: #{f.em(14)};
+    }
+}

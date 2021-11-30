@@ -1,0 +1,23 @@
+{
+	"name" : "Baptiste Jouin",
+	"short_name" : "Baptiste J",
+	"author": "Baptiste Jouin",
+	"description": "Baptiste Jouin. Développeur web junior à Nantes et Blois, France.",
+	"start_url" : "/index.html",
+	"display" : "browser",
+	"background_color" : "#ffffff",
+	"theme_color" : "#1d8866",
+	"orientation" : "portrait-primary",
+	"icons" : [
+		{
+			"src" : "assets/img/icons/icon-196x196.png",
+			"type" : "image/png",
+			"size" : "196x196"
+		},
+		{
+			"src" : "assets/img/icons/icon-512x512.png",
+			"type" : "image/png",
+			"size" : "512x512"
+		}
+	]
+}

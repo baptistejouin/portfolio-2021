@@ -1,0 +1,120 @@
+@use '../01-helpers/variables' as v;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/functions' as f;
+@use '../02-basic/basic';
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	grid-column: span v.$num-grid-columns;
+	padding-bottom: #{f.em(21)};
+	border-bottom: 1px solid v.$white;
+	color: v.$white;
+
+	&.responsive {
+		display: none;
+	}
+
+	@include m.screen-max(v.$screen-sm) {
+		display: none;
+		&.responsive {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+	.nav-menu {
+		z-index: 3;
+		inset: 0;
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		background-color: v.$first-color;
+		color: v.$white;
+		// transform: translateY(-100%);
+		opacity: 0;
+		pointer-events: none;
+		// z-index: -1;
+		visibility: hidden;
+		transition: opacity 200ms ease-in-out;
+		overflow: hidden;
+
+		.close {
+			position: absolute;
+			top: 2rem;
+			right: 2rem;
+			font-size: 3rem;
+			color: v.$white;
+			transform: rotate(45deg);
+		}
+		.links {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 2rem;
+			height: 100%;
+		}
+		.link {
+			display: block;
+			font-size: 3rem;
+		}
+	}
+	&.active {
+		.nav-menu {
+			// transform: translateY(0);
+			opacity: 1;
+			pointer-events: all;
+		}
+	}
+
+	.toggle-nav {
+		cursor: pointer;
+
+		i {
+			color: white;
+			font-size: 2.5rem;
+			display: flex;
+			align-items: center;
+		}
+	}
+}
+
+.navfix {
+	padding: #{f.em(26)} 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	left: 0;
+	z-index: 2;
+	&.small {
+		padding: #{f.em(7)} 0;
+
+		.nav {
+			border: none;
+			padding-bottom: 0;
+		}
+		.background {
+			background-color: rgba(v.$black, $alpha: 0.3);
+			backdrop-filter: blur(3px);
+		}
+	}
+	.background {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: transparent;
+		transition: background-color 1.5s, padding 1.5s;
+	}
+}
+.scrolled-down {
+	transform: translateY(-100%);
+	transition: all 0.3s ease-in-out;
+}
+.scrolled-up {
+	transform: translateY(0);
+	transition: all 0.3s ease-in-out;
+}

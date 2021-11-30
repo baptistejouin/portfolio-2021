@@ -1,0 +1,166 @@
+@use '../01-helpers/variables' as v;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/functions' as f;
+
+@use '../02-basic/basic';
+@use 'btn';
+
+.works {
+	margin-top: #{f.rem(100)};
+	overflow: hidden;
+
+	.types {
+		grid-column: 2 / span 10;
+		@include m.screen-max(v.$screen-md) {
+			grid-column: 1 / span v.$num-grid-columns;
+		}
+		display: flex;
+		flex-direction: column;
+	}
+	.type {
+		position: relative;
+
+		&:not(:last-child) {
+			margin-bottom: #{f.rem(28)};
+
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				height: 1px;
+				width: 120%;
+				background-color: v.$black-10;
+				bottom: 0;
+				left: -10%;
+			}
+		}
+
+		&.active {
+			padding-bottom: 2rem;
+
+			.icon-more {
+				transform: rotate(45deg);
+			}
+		}
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			z-index: -1;
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 200ms ease-in-out;
+		}
+		.project {
+			display: grid;
+			grid-template-columns: repeat(10, 1fr);
+			gap: v.$grid-columns-gap;
+			grid-auto-flow: dense;
+
+			.img-container {
+				grid-column: span 4;
+				display: flex;
+				align-items: center;
+
+				img {
+					max-height: 300px;
+					margin: auto 0;
+					width: 100%;
+					object-fit: contain;
+					@include m.screen-max(v.$screen-md) {
+						margin: 0 auto;
+						max-width: 80%;
+					}
+					@include m.screen-minmax(0, v.$screen-md) {
+						margin: 0 auto;
+						max-width: 100%;
+						max-height: 250px;
+					}
+				}
+			}
+
+			.details {
+				grid-column: 6 / span 5;
+				display: flex;
+				flex-direction: column;
+				gap: #{f.em(11)};
+				@include m.screen-max(v.$screen-md) {
+					margin-top: #{f.em(24)};
+				}
+			}
+
+			@include m.screen-max(v.$screen-md) {
+				.img-container,
+				.details {
+					grid-column: 1 / span 10;
+				}
+			}
+
+			.title {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				text-transform: uppercase;
+				font-size: #{f.rem(28)};
+				font-weight: v.$font-medium;
+
+				i {
+					font-size: 0.6em;
+				}
+			}
+			.keywords {
+				flex-wrap: wrap;
+				display: flex;
+				gap: #{f.em(5)};
+				margin-bottom: #{f.em(18)};
+			}
+			.keyword {
+				font-size: 10px;
+				padding: 3px 10px;
+				border-radius: 1rem;
+				background-color: rgba(v.$first-color-hex, $alpha: 0.2);
+			}
+
+			@include m.screen-min(v.$screen-md) {
+				&:nth-child(even) {
+					.img-container {
+						grid-column: 6 / span 5;
+					}
+					.details {
+						grid-column: 1 / span 5;
+					}
+				}
+			}
+
+			&:not(:last-child) {
+				border-bottom: 1px solid v.$black-10;
+				margin-bottom: #{f.rem(32)};
+				padding-bottom: #{f.rem(32)};
+			}
+		}
+	}
+	.label {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		margin-bottom: #{f.rem(32)};
+		cursor: pointer;
+	}
+	.icon-more {
+		color: v.$first-color;
+		font-size: #{f.em(24)};
+		margin-left: #{f.em(16)};
+		transition: transform 200ms ease-in-out;
+		@include m.screen-max(v.$screen-md) {
+			font-size: #{f.rem(18)};
+		}
+	}
+	.name {
+		color: v.$first-color;
+		font-size: #{f.rem(32)};
+		@include m.screen-max(v.$screen-md) {
+			font-size: #{f.rem(28)};
+		}
+	}
+}

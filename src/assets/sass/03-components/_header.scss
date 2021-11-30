@@ -1,0 +1,72 @@
+@use '../01-helpers/variables' as v;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/functions' as f;
+@use '../02-basic/basic';
+@use 'btn';
+
+.header {
+	.heroBackground {
+		background-image: url('../img/headerBackground.webp');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		padding: #{f.em(26)} 0;
+	}
+	.links {
+		display: flex;
+		align-items: center;
+		gap: #{f.em(40)};
+	}
+
+	.link {
+		font-size: #{f.rem(16)};
+		text-transform: uppercase;
+
+		&.btn {
+			padding: #{f.em(5)} #{f.em(20)};
+			border: none;
+			color: v.$first-color;
+			background-color: v.$white;
+		}
+	}
+
+	.hero {
+		grid-column: 2 / span calc(v.$num-grid-columns - 2);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: #{f.em(120)} 0;
+		@include m.screen-max(v.$screen-md) {
+			grid-column: 1 / span v.$num-grid-columns;
+		}
+		@include m.screen-max(v.$screen-sm) {
+			margin: #{f.em(72)} 0;
+		}
+	}
+
+	h1 {
+		font-family: v.$second-font;
+		color: v.$white;
+		text-align: center;
+	}
+	.description {
+		margin-top: #{f.em(30)};
+		margin-bottom: #{f.em(45)};
+		color: v.$white;
+		text-align: center;
+	}
+	.lang {
+		grid-column: span v.$num-grid-columns;
+		display: flex;
+		justify-content: flex-end;
+		@include m.screen-max(v.$screen-md) {
+			justify-content: center;
+		}
+		gap: #{f.em(5)};
+		color: v.$gray-5;
+
+		& .active {
+			color: v.$white;
+		}
+	}
+}

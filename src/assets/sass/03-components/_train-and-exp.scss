@@ -1,0 +1,52 @@
+@use '../01-helpers/variables' as v;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/functions' as f;
+@use '../02-basic/basic';
+@use 'btn';
+
+.train-and-exp {
+	@include m.screen-max(v.$screen-md) {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.training,
+	.experience {
+		grid-column: span 5;
+		display: flex;
+		flex-direction: column;
+		gap: #{f.em(24)};
+	}
+	.experience {
+		grid-column: 8 / span 5;
+		@include m.screen-max(v.$screen-md) {
+			margin-top: 3rem;
+		}
+	}
+	.item {
+		gap: 0 16px;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+	}
+	.date {
+		grid-column: 1;
+		display: flex;
+		justify-content: center;
+		color: v.$first-color;
+		font-weight: v.$font-bold;
+	}
+	.content {
+		grid-column: 2 / span 4;
+	}
+	.title {
+		font-weight: v.$font-medium;
+		margin-bottom: #{f.em(12)};
+	}
+	.description {
+		color: v.$black-40;
+	}
+	.acronym {
+		font-size: v.$small-font-size;
+		font-weight: normal;
+	}
+}

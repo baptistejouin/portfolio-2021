@@ -1,0 +1,48 @@
+@use '../01-helpers/variables' as v;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/functions' as f;
+@use '../02-basic/basic';
+@use "../02-basic/icons";
+@use 'btn';
+
+.about {
+    @include m.screen-max(v.$screen-md) {display: flex; flex-direction: column;}
+
+    
+    .text-block {
+	    grid-column: span 5;
+    }
+    .about-me, .skills {
+        grid-column: span 5;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: #{f.em(24)};
+        
+    }
+    .skills {
+        grid-column: 8 / span 5;
+        @include m.screen-max(v.$screen-md) {margin-top: 2rem;}
+    }
+    .tech-icons {
+        font-size: #{f.rem(24)};
+        color: v.$first-color;
+        letter-spacing: #{f.em(3)};
+    }
+    .profile {
+        grid-column: span 5;
+        display: flex;
+        gap: #{f.em(24)};
+        align-items: center;
+    }
+    .photo {
+        width: 15%;
+        border-radius: 50%;
+    }
+    .name, .title {
+        font-weight: v.$font-medium;
+    }
+    .title {
+        margin-bottom: #{f.em(18)};
+    }
+}

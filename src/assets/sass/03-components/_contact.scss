@@ -1,0 +1,58 @@
+@use '../01-helpers/variables' as v;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/functions' as f;
+@use '../02-basic/basic';
+@use 'btn';
+
+.contact {
+	@include m.screen-max(v.$screen-md) {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.text-block,
+	.form {
+		grid-column: span 5;
+	}
+	.form {
+		grid-column: 8 / span 5;
+	}
+	form,
+	.text-block {
+		display: flex;
+		flex-direction: column;
+		gap: #{f.em(16)};
+	}
+	form {
+		@include m.screen-max(v.$screen-md) {
+			margin-top: 3rem;
+		}
+	}
+	input:not([type='submit']),
+	textarea {
+		font-size: 1em;
+		color: v.$first-color;
+		border-bottom: 1px solid v.$first-color;
+		flex-grow: 1;
+
+		&:focus-visible {
+			outline: none;
+		}
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+	::placeholder {
+		color: v.$first-color;
+		font-size: 1rem;
+	}
+	.form-item {
+		display: flex;
+		gap: #{f.em(12)};
+	}
+	// .btn-wp {
+	//     justify-content: flex-end;
+	// }
+}

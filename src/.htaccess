@@ -1,0 +1,22 @@
+Options -Indexes
+
+ErrorDocument 404 404.html
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ $1.html [L]
+
+Header unset Pragma
+FileETag None
+Header unset ETag
+
+# cache images/pdf docs for 10 days
+<FilesMatch "\.(ico|pdf|jpg|jpeg|webp|png|gif|js)$">
+Header set Cache-Control "max-age=864000, public, must-revalidate"
+</FilesMatch>
+
+# cache html/htm/xml/txt files for 2 hours
+<FilesMatch "\.(html|htm|xml|txt|xsl)$">
+Header set Cache-Control "max-age=7200, must-revalidate"
+</FilesMatch>

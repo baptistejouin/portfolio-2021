@@ -1,0 +1,52 @@
+@use '../01-helpers/functions' as f;
+@use '../01-helpers/mixins' as m;
+@use '../01-helpers/variables' as v;
+
+.btn {
+    color: v.$black;
+    border: 1px solid v.$black-10;
+    background-color: inherit;
+    font-size: #{f.rem(18)};
+    border-radius: #{f.em(45)};
+    padding: #{f.em(11)} #{f.em(45)};
+    text-transform: uppercase;
+    transition: transform 300ms ease, background-color 200ms ease, color 200ms ease;
+    cursor: pointer;
+
+    @include m.screen-max(v.$screen-sm) {
+        font-size: 1rem;
+    }
+    
+    &.btn-white {
+        color: v.$white;
+        border-color: v.$white;
+    }
+
+    &.btn-square {
+        border-radius: 0;
+    }
+
+    &:hover {
+        background-color: v.$white;
+        transform: translate(0, -#{f.em(4)});
+        // TODO, crée un effet hover en remplassage
+        
+        .icon-arrow-up {
+            transform-origin: center;
+			transform: rotate(45deg) translateY(-25%);
+        }
+
+        &.btn-white {
+            color: v.$black;
+        }
+    }
+}
+.btn-wp {
+    margin-top: #{f.rem(28)};
+    grid-column: span v.$num-grid-columns;
+    display: flex;
+    justify-content: center;
+    gap: #{f.rem(24)} #{f.rem(35)};
+
+    @include m.screen-max(v.$screen-sm) {flex-wrap: wrap;}
+}
