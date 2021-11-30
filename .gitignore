@@ -14,3 +14,10 @@ node_modules/
 .Trashes
 ehthumbs.db
 Thumbs.db
+.parcel-cache/lock.mdb
+.parcel-cache/3cd83e8865eba3c6.txt
+.parcel-cache/4af35132fed640fa.txt
+.parcel-cache/e6ea1e072586c5c2.txt
+.parcel-cache/f29bd700a54591da.txt
+dist/index.html
+.parcel-cache/data.mdb
